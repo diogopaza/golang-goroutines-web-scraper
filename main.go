@@ -5,6 +5,10 @@ import(
 	"fmt"
 	"time"
 	"net/http"
+	"github.com/yhat/scrape"
+	"golang.org/x/net/html"
+	"golang.org/x/net/html/atom"
+	
 )
 
 func say(s string, done chan string){
@@ -27,6 +31,11 @@ func main(){
 	} 
 	body := resp.Body
 	fmt.Println(body)
+
+	htmlParsed, err := html.Parse(body)
+	if err != nil{
+		fmt.Println("Erro ao interpretar HTML")
+	}
 	
 
 
